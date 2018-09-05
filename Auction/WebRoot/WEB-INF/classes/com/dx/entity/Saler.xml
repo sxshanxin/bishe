@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Saler">
+	<resultMap type="com.dx.entity.Saler" id="SalerResult">
+		<id column="sid" javaType="INTEGER" property="sid" />
+		<result column="sname" javaType="STRING" property="sname"/>
+		<result column="spsw" javaType="STRING" property="spsw"/>
+		<result column="srealname" javaType="STRING" property="srealname"/>
+		<result column="stel" javaType="STRING" property="stel"/>
+		<result column="smail" javaType="STRING" property="smail"/>
+		<result column="sstate" javaType="STRING" property="sstate"/>
+		<result column="scode" javaType="STRING" property="scode"/>
+	</resultMap>
+	<select id="findBysName" resultMap="SalerResult" parameterType="java.lang.reflect.Array">
+		select * from t_saler where sname=#{array[0]} and spsw=#{array[1]};
+	</select>
+	<select id="findSalers" resultMap="SalerResult">
+		select * from t_saler;
+	</select>
+	<select id="findSalerBySid" resultMap="SalerResult" parameterType="INTEGER">
+		select * from t_saler where sid=#{_parameter};
+	</select>
+	<update id="updateSaler" parameterType="com.dx.entity.Saler">
+		update t_saler set stel=#{stel},smail=#{smail} where sid=#{sid};
+	</update>
+	<update id="updateSalerpsw" parameterType="com.dx.entity.Saler">
+		update t_saler spsw=#{spsw} where sid=#{sid};
+	</update>
+	<update id="updateSalerState" parameterType="STRING">
+		update t_saler set sstate="禁止拍卖" where sid=#{_parameter};
+	</update>
+	<update id="updateSalerStateP" parameterType="STRING">
+		update t_saler set sstate="允许拍卖" where sid=#{_parameter};
+	</update>
+</mapper>

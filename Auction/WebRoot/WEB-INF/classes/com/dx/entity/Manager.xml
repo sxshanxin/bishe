@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Manager">
+	<resultMap type="com.dx.entity.Manager" id="ManagerResult">
+		<id column="mid" javaType="INTEGER" property="mid"/>
+		<result column="mname" javaType="STRING" property="mname"/>
+		<result column="mpsw" javaType="STRING" property="mpsw"/>
+		<result column="mrealname" javaType="STRING" property="mrealname"/>
+		<result column="mtel" javaType="STRING" property="mtel"/>
+		<result column="mmail" javaType="STRING" property="mmail"/>
+	</resultMap>
+	<select id="findBymName" resultMap="ManagerResult" parameterType="java.lang.reflect.Array">
+		select * from t_manager where mname=#{array[0]} and mpsw=#{array[1]};
+	</select>
+	<insert id="insertManager" parameterType="com.dx.entity.Manager">
+		insert into t_manager(mname,mpsw,mrealname,mtel,mmail) values(#{mname},#{mpsw},#{mrealname},#{mtel},#{mmail});
+	</insert>
+	<select id="findByMname" resultMap="ManagerResult" parameterType="STRING" >
+		select * from t_manager where mname=#{_parameter};
+	</select>
+	<select id="findManagers" resultMap="ManagerResult">
+		select * from t_manager;
+	</select>
+	<delete id="delMnager" parameterType="STRING">
+		delete from t_manager where mid=#{_parameter};
+	</delete>
+</mapper>

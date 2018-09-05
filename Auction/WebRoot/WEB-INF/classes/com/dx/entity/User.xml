@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+  <resultMap type="com.dx.entity.User" id="userResult">
+    <id column="uid" jdbcType="INTEGER" property="uid"/>
+    <result column="uname" jdbcType="VARCHAR" property="uname"/>
+    <result column="upsw" jdbcType="VARCHAR" property="upsw"/>
+    <result column="urealname" jdbcType="VARCHAR" property="urealname"/>
+    <result column="utel" jdbcType="VARCHAR" property="utel"/>
+    <result column="umoney" jdbcType="DOUBLE" property="umoney"/>
+    <result column="usex" jdbcType="VARCHAR" property="usex"/>
+    <result column="ubirthday" jdbcType="VARCHAR" property="ubirthday"/>
+    <result column="ustate" jdbcType="VARCHAR" property="ustate"/>
+  </resultMap>
+   <select id="findUserByuName" resultMap="userResult"  parameterType="java.lang.reflect.Array">
+  		select * from t_user where uname=#{array[0]} and upsw=#{array[1]};
+  </select>
+  <select id="findUsers" resultMap="userResult">
+  		select * from t_user;
+  </select>
+  <select id="findUserByUid" resultMap="userResult" parameterType="INTEGER">
+  		select * from t_user where uid=#{_parameter};
+  </select>
+  <update id="updateUser" parameterType="com.dx.entity.User">
+  		update t_user set usex=#{usex},ubirthday=#{ubirthday},utel=#{utel} where uid=#{uid};
+  </update>
+  <update id="updateUserpsw" parameterType="com.dx.entity.User">
+  		update t_user set upsw=#{upsw} where uid=#{uid};
+  </update>
+  <update id="updateUserstateD" parameterType="STRING">
+  		update t_user set ustate="冻结" where uid=#{_parameter};
+  </update>
+  <update id="updateUserstateJ" parameterType="STRING">
+  		update t_user set ustate="激活" where uid=#{_parameter};
+  </update>
+</mapper>

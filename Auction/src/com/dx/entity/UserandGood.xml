@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserandGood">
+  <resultMap type="com.dx.entity.UserandGood" id="UserandGood">
+    <id column="ugid" jdbcType="INTEGER" property="ugid"/>
+	<association property="User" javaType="com.dx.entity.User" >
+		<id column="uid" jdbcType="INTEGER" property="uid"/>
+	    <result column="uname" jdbcType="VARCHAR" property="uname"/>
+	    <result column="upsw" jdbcType="VARCHAR" property="upsw"/>
+	    <result column="urealname" jdbcType="VARCHAR" property="urealname"/>
+	    <result column="utel" jdbcType="VARCHAR" property="utel"/>
+	    <result column="umoney" jdbcType="DOUBLE" property="umoney"/>
+	    <result column="usex" jdbcType="VARCHAR" property="usex"/>
+	    <result column="ubirthday" jdbcType="VARCHAR" property="ubirthday"/>
+	</association>
+	<association property="Good" javaType="com.dx.entity.Good">
+		<id column="gid" javaType="INTEGER" property="gid"/>
+		<result column="gname" javaType="STRING" property="gname"/>
+		<result column="gprice" javaType="DOUBLE" property="gprice"/>
+		<result column="gendprice" javaType="DOUBLE" property="gendprice"/>
+		<result column="gimg" javaType="STRING" property="gimg"/>
+		<result column="gdate" javaType="STRING" property="gdate"/>
+		<result column="gthing" javaType="STRING" property="gthing"/>
+		<result column="gstate" javaType="STRING" property="gstate"/>
+	</association>
+  </resultMap>
+</mapper>

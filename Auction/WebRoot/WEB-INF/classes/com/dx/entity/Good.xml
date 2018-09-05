@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Good">
+	<resultMap type="com.dx.entity.Good" id="GoodResult">
+		<id column="gid" javaType="INTEGER" property="gid"/>
+		<result column="gname" javaType="STRING" property="gname"/>
+		<result column="gprice" javaType="DOUBLE" property="gprice"/>
+		<result column="gendprice" javaType="DOUBLE" property="gendprice"/>
+		<result column="gimg" javaType="STRING" property="gimg"/>
+		<result column="gdata" javaType="STRING" property="gdata"/>
+		<result column="gthing" javaType="STRING" property="gthing"/>
+		<result column="gstate" javaType="STRING" property="gstate"/>
+	</resultMap>
+	<select id="findGoods" resultMap="GoodResult">
+			select * from t_good;
+	</select>
+	<insert id="insertGood" parameterType="com.dx.entity.Good">
+			insert into t_good(gname,gprice,gimg,gdata,gthing,gstate) values(#{gname},#{gprice},#{gimg},#{gdata},#{gthing},#{gstate});
+	</insert>
+	<update id="updateGoodGstate" parameterType="STRING">
+			update t_good set gstate="允许拍卖" where gid=#{_parameter};
+	</update>
+	<select id="findMyGoods" resultMap="GoodResult" parameterType="STRING">
+  		select g.* from t_saler_good sg,t_good g,t_saler s where s.sid=sg.sid and g.gid=sg.gid and s.sid=#{_parameter};
+  	</select>
+  	<select id="findgoodbygid" resultMap="GoodResult" parameterType="STRING">
+  		select * from t_good where gid=#{_parameter};
+  	</select>
+  	<select id="findgoodbygname" resultMap="GoodResult" parameterType="STRING">
+  		select * from t_good where gname=#{_parameter};
+  	</select>
+  	<select id="findUserGoods" resultMap="GoodResult" parameterType="STRING">
+  		select g.* from t_user_good ug,t_good g,t_user u where u.uid=ug.uid and g.gid=ug.gid and u.uid=#{_parameter};
+  	</select>
+</mapper>
