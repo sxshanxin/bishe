@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#msg1").html("");
 			return true;
 		}else{
-			$("#msg1").html("密码不sssssssssssss能为空");
+			$("#msg1").html("密码不s哒哒哒哒哒哒多多多sssss能为空");
 			return false;
 		}
 	}
