@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+﻿<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#msg1").html("");
 			return true;
 		}else{
-			$("#msg1").html("密码不能为空");
+			$("#msg1").html("密码不sssssssssssss能为空");
 			return false;
 		}
 	}
